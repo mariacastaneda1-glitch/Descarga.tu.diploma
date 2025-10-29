@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Diploma Interactivo Infantil</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      gap: 30px;
+      padding: 40px;
+      background: linear-gradient(135deg, #f9f7f7, #dbeafe);
+    }
+
+    .panel {
+      width: 300px;
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #a5d8ff;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #72b4e0;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #4696d2;
+    }
+
+    /* Diploma */
+    .diploma {
+      width: 1100px;
+      height: 770px;
+      background: linear-gradient(145deg, #fef9ef, #fff);
+      border: 10px solid #72b4e0;
+      border-radius: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 50px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Elementos decorativos */
+    .circulo {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    .c1 { width: 200px; height: 200px; background: #f59e0b; top: -40px; left: -40px; }
+    .c2 { width: 250px; height: 250px; background: #3b82f6; bottom: -60px; right: -60px; }
+    .c3 { width: 150px; height: 150px; background: #f472b6; bottom: 50px; left: 70px; }
+
+    .titulo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 38px;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subtitulo {
+      font-size: 20px;
+      color: #475569;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .texto {
+      font-size: 22px;
+      color: #1e293b;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nombre {
+      font-family: 'Fredoka One', cursive;
+      font-size: 42px;
+      color: #ea580c;
+      margin-bottom: 20px;
+      text-transform: capitalize;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reconocimiento {
+      font-size: 20px;
+      color: #1e293b;
+      max-width: 800px;
+      margin: 0 auto 70px auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .firmas {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      font-size: 16px;
+      color: #000;
+      position: relative;
+      z-index: 1;
+    }
+
+    .firma {
+      text-align: center;
+    }
+
+    .firma-linea {
+      border-top: 2px solid #000;
+      width: 220px;
+      margin: 0 auto 8px auto;
+    }
+
+    .fecha {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Panel -->
+  <div class="panel">
+    <h3 style="color:#1e3a8a;">Genera tu diploma 🎓</h3>
+    <label for="nombre">Escribe tu nombre:</label>
+    <input id="nombre" type="text" placeholder="Ej. Samara López Barrero" />
+    <button id="generar">Descargar Diploma</button>
+    <p style="margin-top:10px;font-size:13px;color:#555;">
+      Se descargará automáticamente en formato PDF.
+    </p>
+  </div>
+
+  <!-- Diploma -->
+  <div id="diploma" class="diploma">
+    <div class="circulo c1"></div>
+    <div class="circulo c2"></div>
+    <div class="circulo c3"></div>
+
+    <div class="titulo">Prevención de la violencia sexual en la infancia y la niñez</div>
+    <div class="subtitulo">Herramienta pedagógica para romper estereotipos de género</div>
+
+    <div class="texto">Otorga el presente reconocimiento a</div>
+    <div id="nombreVisual" class="nombre">Nombre Apellido</div>
+
+    <div class="reconocimiento">
+      Por completar la Ruta Interactiva y ser un/a defensor/a de la igualdad y el respeto.
+    </div>
+
+    <div class="firmas">
+      <div class="firma">
+        <div class="firma-linea"></div>
+        <div>Maria Fernanda Castañeda</div>
+      </div>
+      <div class="firma">
+        <div class="firma-linea"></div>
+        <div>Kelly Vanesa Galeano</div>
+      </div>
+    </div>
+
+    <div class="fecha">Fecha de emisión: <span id="fecha"></span></div>
+  </div>
+
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    const nombreInput = document.getElementById('nombre');
+    const nombreVisual = document.getElementById('nombreVisual');
+    const generarBtn = document.getElementById('generar');
+    const diplomaDiv = document.getElementById('diploma');
+
+    // Fecha actual
+    const fechaSpan = document.getElementById('fecha');
+    const hoy = new Date();
+    fechaSpan.textContent = hoy.toLocaleDateString('es-CO', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+    // Actualiza nombre en tiempo real
+    nombreInput.addEventListener('input', () => {
+      nombreVisual.textContent = nombreInput.value.trim() || 'Nombre Apellido';
+    });
+
+    generarBtn.addEventListener('click', async () => {
+      const nombre = nombreInput.value.trim() || 'Participante';
+      nombreVisual.textContent = nombre;
+
+      const canvas = await html2canvas(diplomaDiv, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`${nombre}_Diploma.pdf`);
+    });
+  </script>
+</body>
+</html>
